@@ -17,21 +17,27 @@ class CustomAppmenuWidget extends StatelessWidget {
         children: [
           CustomFlatButtonWidget(
             text: 'Counter',
-            onPress: () {},
+            onPress: () {
+              Navigator.pushNamed(context, '/stateful');
+            },
           ),
           SizedBox(
             width: 10,
           ),
           CustomFlatButtonWidget(
             text: 'Counter Provider',
-            onPress: () {},
+            onPress: () {
+              Navigator.pushNamed(context, '/provider');
+            },
           ),
           SizedBox(
             width: 10,
           ),
           CustomFlatButtonWidget(
             text: 'Other',
-            onPress: () {},
+            onPress: () {
+              Navigator.pushNamed(context, '/other');
+            },
           ),
         ],
       ),
