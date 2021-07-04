@@ -1,3 +1,4 @@
+import 'package:basic_1/ui/shared/custom_app_menu.dart';
 import 'package:basic_1/ui/shared/custom_flat_button.dart';
 import 'package:flutter/material.dart';
 
@@ -18,18 +19,39 @@ class _CounterPageState extends State<CounterPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'Counter: $counter',
-            style: TextStyle(fontSize: 80),
+          CustomAppmenuWidget(),
+          Spacer(),
+          FittedBox(
+            fit: BoxFit.contain,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                'Counter: $counter',
+                style: TextStyle(fontSize: 80),
+              ),
+            ),
           ),
-          CustomFlatButtonWidget(
-            text: 'Increment',
-            onPress: () {
-              setState(() {
-                counter++;
-              });
-            },
-          )
+          Row(
+            children: [
+              CustomFlatButtonWidget(
+                text: 'Increment',
+                onPress: () {
+                  setState(() {
+                    counter++;
+                  });
+                },
+              ),
+              CustomFlatButtonWidget(
+                text: 'Decrement',
+                onPress: () {
+                  setState(() {
+                    counter--;
+                  });
+                },
+              ),
+            ],
+          ),
+          Spacer(),
         ],
       ),
     );
