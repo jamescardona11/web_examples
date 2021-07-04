@@ -15,49 +15,47 @@ class _CounterPageState extends State<CounterPage> {
   int counter = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CustomAppmenuWidget(),
-          Spacer(),
-          Text(
-            'Counter Stateful',
-            style: TextStyle(fontSize: 20),
-          ),
-          FittedBox(
-            fit: BoxFit.contain,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                'Counter: $counter',
-                style: TextStyle(fontSize: 80),
-              ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CustomAppmenuWidget(),
+        Spacer(),
+        Text(
+          'Counter Stateful',
+          style: TextStyle(fontSize: 20),
+        ),
+        FittedBox(
+          fit: BoxFit.contain,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Text(
+              'Counter: $counter',
+              style: TextStyle(fontSize: 80),
             ),
           ),
-          Row(
-            children: [
-              CustomFlatButtonWidget(
-                text: 'Increment',
-                onPress: () {
-                  setState(() {
-                    counter++;
-                  });
-                },
-              ),
-              CustomFlatButtonWidget(
-                text: 'Decrement',
-                onPress: () {
-                  setState(() {
-                    counter--;
-                  });
-                },
-              ),
-            ],
-          ),
-          Spacer(),
-        ],
-      ),
+        ),
+        Row(
+          children: [
+            CustomFlatButtonWidget(
+              text: 'Increment',
+              onPress: () {
+                setState(() {
+                  counter++;
+                });
+              },
+            ),
+            CustomFlatButtonWidget(
+              text: 'Decrement',
+              onPress: () {
+                setState(() {
+                  counter--;
+                });
+              },
+            ),
+          ],
+        ),
+        Spacer(),
+      ],
     );
   }
 }

@@ -7,10 +7,8 @@ class Erro404Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Hello ERROR Page'),
-      ),
+    return Center(
+      child: Text('Hello ERROR Page'),
     );
   }
 }

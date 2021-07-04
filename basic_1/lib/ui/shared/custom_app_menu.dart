@@ -1,3 +1,5 @@
+import 'package:basic_1/provider/locator.dart';
+import 'package:basic_1/services/navigator_service.dart';
 import 'package:flutter/material.dart';
 
 import 'custom_flat_button.dart';
@@ -18,7 +20,8 @@ class CustomAppmenuWidget extends StatelessWidget {
           CustomFlatButtonWidget(
             text: 'Counter',
             onPress: () {
-              Navigator.pushNamed(context, '/stateful');
+              // Navigator.pushNamed(context, '/stateful');
+              locator<NavigatorService>().navigaTo('/stateful');
             },
           ),
           SizedBox(
@@ -27,7 +30,8 @@ class CustomAppmenuWidget extends StatelessWidget {
           CustomFlatButtonWidget(
             text: 'Counter Provider',
             onPress: () {
-              Navigator.pushNamed(context, '/provider');
+              // Navigator.pushNamed(context, '/provider');
+              locator<NavigatorService>().navigaTo('/provider');
             },
           ),
           SizedBox(
@@ -36,7 +40,8 @@ class CustomAppmenuWidget extends StatelessWidget {
           CustomFlatButtonWidget(
             text: 'Other',
             onPress: () {
-              Navigator.pushNamed(context, '/other');
+              // Navigator.pushNamed(context, '/other');
+              locator<NavigatorService>().navigaTo('/other');
             },
           ),
         ],

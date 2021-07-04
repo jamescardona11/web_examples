@@ -28,45 +28,43 @@ class CounterProviderBodyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final counterProvider = Provider.of<CounterProvider>(context);
 
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CustomAppmenuWidget(),
-          Spacer(),
-          Text(
-            'Counter Provider',
-            style: TextStyle(fontSize: 20),
-          ),
-          FittedBox(
-            fit: BoxFit.contain,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                'Counter: ${counterProvider.counter}',
-                style: TextStyle(fontSize: 80),
-              ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CustomAppmenuWidget(),
+        Spacer(),
+        Text(
+          'Counter Provider',
+          style: TextStyle(fontSize: 20),
+        ),
+        FittedBox(
+          fit: BoxFit.contain,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Text(
+              'Counter: ${counterProvider.counter}',
+              style: TextStyle(fontSize: 80),
             ),
           ),
-          Row(
-            children: [
-              CustomFlatButtonWidget(
-                text: 'Increment',
-                onPress: () {
-                  counterProvider.increment();
-                },
-              ),
-              CustomFlatButtonWidget(
-                text: 'Decrement',
-                onPress: () {
-                  counterProvider.decrement();
-                },
-              ),
-            ],
-          ),
-          Spacer(),
-        ],
-      ),
+        ),
+        Row(
+          children: [
+            CustomFlatButtonWidget(
+              text: 'Increment',
+              onPress: () {
+                counterProvider.increment();
+              },
+            ),
+            CustomFlatButtonWidget(
+              text: 'Decrement',
+              onPress: () {
+                counterProvider.decrement();
+              },
+            ),
+          ],
+        ),
+        Spacer(),
+      ],
     );
   }
 }
