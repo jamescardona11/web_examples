@@ -31,7 +31,6 @@ class CounterProviderBodyPage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CustomAppmenuWidget(),
         Spacer(),
         Text(
           'Counter Provider',

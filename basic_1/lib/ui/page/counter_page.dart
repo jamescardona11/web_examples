@@ -1,4 +1,3 @@
-import 'package:basic_1/ui/shared/custom_app_menu.dart';
 import 'package:basic_1/ui/shared/custom_flat_button.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +17,6 @@ class _CounterPageState extends State<CounterPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CustomAppmenuWidget(),
         Spacer(),
         Text(
           'Counter Stateful',

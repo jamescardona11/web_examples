@@ -11,10 +11,26 @@ class CustomAppmenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        return constraints.maxWidth > 520
+            ? _TableDesktopWidget()
+            : _MobileWidget();
+      },
+    );
+  }
+}
+
+class _TableDesktopWidget extends StatelessWidget {
+  const _TableDesktopWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      color: Colors.red,
       child: Row(
         children: [
           CustomFlatButtonWidget(
@@ -36,6 +52,52 @@ class CustomAppmenuWidget extends StatelessWidget {
           ),
           SizedBox(
             width: 10,
+          ),
+          CustomFlatButtonWidget(
+            text: 'Other',
+            onPress: () {
+              // Navigator.pushNamed(context, '/other');
+              locator<NavigatorService>().navigaTo('/other');
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MobileWidget extends StatelessWidget {
+  const _MobileWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomFlatButtonWidget(
+            text: 'Counter',
+            onPress: () {
+              // Navigator.pushNamed(context, '/stateful');
+              locator<NavigatorService>().navigaTo('/stateful');
+            },
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          CustomFlatButtonWidget(
+            text: 'Counter Provider',
+            onPress: () {
+              // Navigator.pushNamed(context, '/provider');
+              locator<NavigatorService>().navigaTo('/provider');
+            },
+          ),
+          SizedBox(
+            height: 10,
           ),
           CustomFlatButtonWidget(
             text: 'Other',
