@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 class CounterPage extends StatefulWidget {
   const CounterPage({
     Key? key,
+    this.base = '10',
   }) : super(key: key);
+
+  final String base;
 
   @override
   _CounterPageState createState() => _CounterPageState();
@@ -12,6 +15,15 @@ class CounterPage extends StatefulWidget {
 
 class _CounterPageState extends State<CounterPage> {
   int counter = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    if (int.tryParse(widget.base) != null) {
+      counter = int.parse(widget.base);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -7,7 +7,10 @@ import 'package:provider/provider.dart';
 class CounterProviderPage extends StatefulWidget {
   const CounterProviderPage({
     Key? key,
+    required this.base,
   }) : super(key: key);
+
+  final String base;
 
   @override
   _CounterProviderPageState createState() => _CounterProviderPageState();
@@ -17,7 +20,7 @@ class _CounterProviderPageState extends State<CounterProviderPage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => CounterProvider(),
+      create: (_) => CounterProvider(widget.base),
       child: CounterProviderBodyPage(),
     );
   }

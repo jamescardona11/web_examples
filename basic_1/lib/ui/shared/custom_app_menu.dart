@@ -44,10 +44,30 @@ class _TableDesktopWidget extends StatelessWidget {
             width: 10,
           ),
           CustomFlatButtonWidget(
+            text: 'Counter 100',
+            onPress: () {
+              // Navigator.pushNamed(context, '/stateful');
+              locator<NavigatorService>().navigaTo('/stateful/100');
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          CustomFlatButtonWidget(
             text: 'Counter Provider',
             onPress: () {
               // Navigator.pushNamed(context, '/provider');
               locator<NavigatorService>().navigaTo('/provider');
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          CustomFlatButtonWidget(
+            text: 'Counter Provider 200',
+            onPress: () {
+              // Navigator.pushNamed(context, '/provider');
+              locator<NavigatorService>().navigaTo('/provider?q=200');
             },
           ),
           SizedBox(
