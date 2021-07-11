@@ -1,6 +1,9 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:landing_page_scroll/providers/page_provider.dart';
 import 'package:landing_page_scroll/ui/shared/custom_menu_item.dart';
+import 'package:provider/provider.dart';
 
 class CustomAppWidget extends StatefulWidget {
   @override
@@ -24,36 +27,52 @@ class _CustomAppWidgetState extends State<CustomAppWidget>
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () {
-          setState(() {
-            isOpen = !isOpen;
-          });
+    final pageProvider = Provider.of<PageProvider>(context, listen: false);
 
-          if (isOpen) {
-            controller.reverse();
-          } else {
-            controller.forward();
-          }
-        },
-        child: Container(
-          width: 150,
-          height: isOpen ? 260 : 50,
-          color: Colors.black,
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            children: [
-              _MenuTitle(isOpen: isOpen, controller: controller),
-              if (isOpen) ...[
-                CustomMenuItemWidget(text: 'Home', onPressed: () {}),
-                CustomMenuItemWidget(text: 'About', onPressed: () {}),
-                CustomMenuItemWidget(text: 'Contat', onPressed: () {}),
-                CustomMenuItemWidget(text: 'Location', onPressed: () {}),
-                SizedBox(),
-              ]
-            ],
+    return FadeIn(
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () {
+            setState(() {
+              isOpen = !isOpen;
+            });
+
+            if (isOpen) {
+              controller.reverse();
+            } else {
+              controller.forward();
+            }
+          },
+          child: Container(
+            width: 150,
+            height: isOpen ? 260 : 50,
+            color: Colors.black,
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              children: [
+                _MenuTitle(isOpen: isOpen, controller: controller),
+                if (isOpen) ...[
+                  CustomMenuItemWidget(
+                    text: 'Home',
+                    onPressed: () => pageProvider.goTo(0),
+                  ),
+                  CustomMenuItemWidget(
+                    text: 'About',
+                    onPressed: () => pageProvider.goTo(1),
+                  ),
+                  CustomMenuItemWidget(
+                    text: 'Contat',
+                    onPressed: () => pageProvider.goTo(2),
+                  ),
+                  CustomMenuItemWidget(
+                    text: 'Location',
+                    onPressed: () => pageProvider.goTo(3),
+                  ),
+                  SizedBox(),
+                ]
+              ],
+            ),
           ),
         ),
       ),
