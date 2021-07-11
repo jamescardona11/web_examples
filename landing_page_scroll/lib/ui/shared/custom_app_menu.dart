@@ -1,37 +1,102 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:landing_page_scroll/ui/shared/custom_menu_item.dart';
 
-class CustomAppWidget extends StatelessWidget {
+class CustomAppWidget extends StatefulWidget {
+  @override
+  _CustomAppWidgetState createState() => _CustomAppWidgetState();
+}
+
+class _CustomAppWidgetState extends State<CustomAppWidget>
+    with SingleTickerProviderStateMixin {
+  bool isOpen = false;
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(microseconds: 200),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          print('click');
+          setState(() {
+            isOpen = !isOpen;
+          });
+
+          if (isOpen) {
+            controller.reverse();
+          } else {
+            controller.forward();
+          }
         },
         child: Container(
           width: 150,
-          height: 50,
+          height: isOpen ? 260 : 50,
           color: Colors.black,
           padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
+          child: Column(
             children: [
-              Text(
-                'Menu',
-                style: GoogleFonts.roboto(
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-              Spacer(),
-              Icon(
-                Icons.menu,
-                color: Colors.white,
-              )
+              _MenuTitle(isOpen: isOpen, controller: controller),
+              if (isOpen) ...[
+                CustomMenuItemWidget(text: 'Home', onPressed: () {}),
+                CustomMenuItemWidget(text: 'About', onPressed: () {}),
+                CustomMenuItemWidget(text: 'Contat', onPressed: () {}),
+                CustomMenuItemWidget(text: 'Location', onPressed: () {}),
+                SizedBox(),
+              ]
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _MenuTitle extends StatelessWidget {
+  const _MenuTitle({
+    Key? key,
+    required this.isOpen,
+    required this.controller,
+  }) : super(key: key);
+
+  final bool isOpen;
+  final AnimationController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 150,
+      height: 50,
+      child: Row(
+        children: [
+          AnimatedContainer(
+            duration: Duration(microseconds: 200),
+            curve: Curves.easeInOut,
+            width: isOpen ? 50 : 0,
+          ),
+          Text(
+            'Menu',
+            style: GoogleFonts.roboto(
+              fontSize: 18,
+              color: Colors.white,
+            ),
+          ),
+          Spacer(),
+          AnimatedIcon(
+            icon: AnimatedIcons.menu_close,
+            progress: controller,
+            color: Colors.white,
+          )
+        ],
       ),
     );
   }

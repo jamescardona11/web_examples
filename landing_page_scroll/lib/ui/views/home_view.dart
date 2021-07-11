@@ -10,9 +10,9 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.pink,
-      child: FittedBox(
-        fit: BoxFit.contain,
-        child: Center(
+      child: Center(
+        child: FittedBox(
+          fit: BoxFit.contain,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
